@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta Steam</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0b1f3a; /* azul-marinho */
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: #112b4a;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #a0d8ff; /* azul-claro */
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #a0d8ff;
+      color: #0b1f3a;
+      border: none;
+      padding: 10px;
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #73c7ff;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .checkbox-group {
+      margin-top: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .checkbox-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+
+<style>
+/* Checkbox estilizado */
+input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #00bfff;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #00bfff;
+}
+
+input[type="checkbox"]::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+input[type="checkbox"]:checked::before {
+  display: block;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #003366;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #001f3f;
+}
+
+body {
+  overflow-x: hidden; /* remove a barra de rolagem horizontal */
+}
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <!-- Login -->
+    <div id="login-screen">
+      <h1>Consulta Steam</h1>
+      <h2>Login</h2>
+      <label>Email:</label>
+      <input type="email" id="login-email" />
+      <label>Senha:</label>
+      <input type="password" id="login-password" />
+      <button onclick="goToCadastro()">Fazer Cadastro</button>
+      <button>Entrar</button>
+    </div>
+
+    <!-- Cadastro -->
+    <div id="cadastro-screen" class="hidden">
+      <h2>Cadastro</h2>
+      <label>Nome:</label>
+      <input type="text" id="cadastro-nome" />
+      <label>Email:</label>
+      <input type="email" id="cadastro-email" />
+      <label>Senha:</label>
+      <input type="password" id="cadastro-senha" />
+      <button onclick="goToGeneros()">Continuar</button>
+    </div>
+
+    <!-- Seleção de Gêneros -->
+    <div id="generos-screen" class="hidden">
+      <h2>Escolha seus gêneros favoritos</h2>
+      <div class="checkbox-group">
+        <label><input type="checkbox" /> Action -> Adrenalina</label>
+        <label><input type="checkbox" /> Action -> Tensão</label>
+        <label><input type="checkbox" /> Fantasy -> Magia / Fantasia</label>
+        <label><input type="checkbox" /> Fantasy -> Criatividade</label>
+        <label><input type="checkbox" /> Fantasy -> Imaginação</label>
+        <label><input type="checkbox" /> Science Fiction -> Exploração</label>
+        <label><input type="checkbox" /> Science Fiction -> Tecnologia futurista</label>
+        <label><input type="checkbox" /> Horror -> Tensão</label>
+        <label><input type="checkbox" /> Horror -> Mistério</label>
+        <label><input type="checkbox" /> Horror -> Ambientes sombrios</label>
+        <label><input type="checkbox" /> Thriller -> Tensão</label>
+        <label><input type="checkbox" /> Thriller -> Narrativa profunda</label>
+        <label><input type="checkbox" /> Thriller -> Mistério</label>
+        <label><input type="checkbox" /> Thriller -> Conflitos emocionais</label>
+        <label><input type="checkbox" /> Survival -> Adrenalina</label>
+        <label><input type="checkbox" /> Survival -> Tensão</label>
+        <label><input type="checkbox" /> Survival -> Realismo</label>
+        <label><input type="checkbox" /> Survival -> Superação / Resistência</label>
+        <label><input type="checkbox" /> Survival -> Ambientes sombrios</label>
+        <label><input type="checkbox" /> Survival -> Crescimento pessoal</label>
+        <label><input type="checkbox" /> Historical -> Narrativa profunda</label>
+        <label><input type="checkbox" /> Historical -> Realismo</label>
+        <label><input type="checkbox" /> Historical -> Superação / Resistência</label>
+        <label><input type="checkbox" /> Stealth -> Mistério</label>
+        <label><input type="checkbox" /> Stealth -> Estratégia</label>
+        <label><input type="checkbox" /> Comedy -> Humor</label>
+        <label><input type="checkbox" /> Business -> Conquista / Dominação</label>
+        <label><input type="checkbox" /> Business -> Estratégia</label>
+        <label><input type="checkbox" /> Business -> Crescimento pessoal</label>
+        <label><input type="checkbox" /> Drama -> Narrativa profunda</label>
+        <label><input type="checkbox" /> Drama -> Relacionamentos</label>
+        <label><input type="checkbox" /> Drama -> Conflitos emocionais</label>
+        <label><input type="checkbox" /> Non-fiction -> Tecnologia futurista</label>
+        <label><input type="checkbox" /> Non-fiction -> Realismo</label>
+        <label><input type="checkbox" /> Non-fiction -> Crescimento pessoal</label>
+        <label><input type="checkbox" /> Sandbox -> Exploração</label>
+        <label><input type="checkbox" /> Sandbox -> Criatividade</label>
+        <label><input type="checkbox" /> Sandbox -> Liberdade</label>
+        <label><input type="checkbox" /> Sandbox -> Imaginação</label>
+        <label><input type="checkbox" /> Kids -> Criatividade</label>
+        <label><input type="checkbox" /> Kids -> Humor</label>
+        <label><input type="checkbox" /> Kids -> Liberdade</label>
+        <label><input type="checkbox" /> Kids -> Socialização</label>
+        <label><input type="checkbox" /> Kids -> Imaginação</label>
+        <label><input type="checkbox" /> Open World -> Exploração</label>
+        <label><input type="checkbox" /> Open World -> Liberdade</label>
+        <label><input type="checkbox" /> Warfare -> Adrenalina</label>
+        <label><input type="checkbox" /> Warfare -> Conquista / Dominação</label>
+        <label><input type="checkbox" /> Warfare -> Estratégia</label>
+        <label><input type="checkbox" /> Warfare -> Superação / Resistência</label>
+        <label><input type="checkbox" /> Party -> Humor</label>
+        <label><input type="checkbox" /> Party -> Relacionamentos</label>
+        <label><input type="checkbox" /> Party -> Socialização</label>
+        <label><input type="checkbox" /> 4X -> Exploração</label>
+        <label><input type="checkbox" /> 4X -> Conquista / Dominação</label>
+        <label><input type="checkbox" /> 4X -> Estratégia</label>
+        <label><input type="checkbox" /> Romance -> Narrativa profunda</label>
+        <label><input type="checkbox" /> Romance -> Relacionamentos</label>
+        <label><input type="checkbox" /> Romance -> Socialização</label>
+        <label><input type="checkbox" /> Romance -> Conflitos emocionais</label>
+      </div>
+      <button>Finalizar Cadastro</button>
+    </div>
+  </div>
+
+  <script>
+    function goToCadastro() {
+      document.getElementById("login-screen").classList.add("hidden");
+      document.getElementById("cadastro-screen").classList.remove("hidden");
+    }
+
+    function goToGeneros() {
+      document.getElementById("cadastro-screen").classList.add("hidden");
+      document.getElementById("generos-screen").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
